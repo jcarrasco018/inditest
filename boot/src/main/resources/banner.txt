@@ -1,0 +1,12 @@
+,--.,--.  ,--.,------.  ,--.,--------.,------. ,---.,--------.
+|  ||  ,'.|  ||  .-.  \ |  |'--.  .--'|  .---''   .-'--.  .--'
+|  ||  |' '  ||  |  \  :|  |   |  |   |  `--, `.  `-.  |  |
+|  ||  | `   ||  '--'  /|  |   |  |   |  `---..-'    | |  |
+`--'`--'  `--'`-------' `--'   `--'   `------'`-----'  `--'
+
+Powered by Spring Boot ${spring-boot.version}
+
+:: Port :: ${server.port}
+:: URL  :: http://localhost:${server.port}${server.contextPath}
+:: Swagger :: http://localhost:${server.port}${server.contextPath}/swagger-ui.html
+:: H2-console ::  http://localhost:${server.port}${server.contextPath}/h2-console

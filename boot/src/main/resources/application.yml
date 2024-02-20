@@ -1,0 +1,4 @@
+server:
+  contextPath: /inditest/v1
+  servlet.context-path: /inditest/v1
+  port: 9654
