@@ -5,6 +5,7 @@ import com.inditest.application.api.PricesService;
 import com.inditest.infraestructure.dto.PricesResultDTO;
 import com.inditest.infraestructure.mapper.PricesResultMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -38,11 +39,11 @@ public class PricesController {
     })
     @GetMapping
     public ResponseEntity<PricesResultDTO> findPrices(
-            //@Parameter(required = true, description="Fecha que tiene que estar dentro de startDate y endDate")
+            @Parameter(required = true, description="Fecha que tiene que estar dentro de startDate y endDate")
             @RequestParam(name = "date") Instant date,
-            //@Parameter(required = true, description="Id del Producto a filtrar")
+            @Parameter(required = true, description="Id del Producto a filtrar")
             @RequestParam(name = "productId") Long productId,
-            //@Parameter(required = true, description="Id del Brand a filtrar")
+            @Parameter(required = true, description="Id del Brand a filtrar")
             @RequestParam(name = "brandId") Long brandId
     ) {
         PricesResultDTO prices = PricesResultMapper.toDTO(pricesService.findPrices(date, productId, brandId));
