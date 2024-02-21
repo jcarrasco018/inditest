@@ -31,7 +31,8 @@ public class PricesController {
 
 
     @Operation(summary = "Devuelve el precio a final a aplicar",
-            description = "Este metodo buscara en BBDD el precio que se aplicara con los parámetros de entrada ")
+            description = "Este metodo buscara en BBDD el precio que se aplicara con los parámetros de entrada"
+    )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Encuentra un precio a aplicar"),
             @ApiResponse(responseCode = "404", description = "No Se encuentra un precio a aplicar", content = @Content),
@@ -39,11 +40,11 @@ public class PricesController {
     })
     @GetMapping
     public ResponseEntity<PricesResultDTO> findPrices(
-            @Parameter(required = true, description="Fecha que tiene que estar dentro de startDate y endDate")
+            @Parameter(required = true, description="Fecha que tiene que estar dentro de startDate y endDate", example = "2020-06-14T14:00:00.000Z")
             @RequestParam(name = "date") Instant date,
-            @Parameter(required = true, description="Id del Producto a filtrar")
+            @Parameter(required = true, description="Id del Producto a filtrar", example = "35455")
             @RequestParam(name = "productId") Long productId,
-            @Parameter(required = true, description="Id del Brand a filtrar")
+            @Parameter(required = true, description="Id del Brand a filtrar",example = "1")
             @RequestParam(name = "brandId") Long brandId
     ) {
         PricesResultDTO prices = PricesResultMapper.toDTO(pricesService.findPrices(date, productId, brandId));
