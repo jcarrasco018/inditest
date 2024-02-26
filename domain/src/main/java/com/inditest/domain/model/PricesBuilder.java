@@ -3,6 +3,8 @@ package com.inditest.domain.model;
 import java.time.Instant;
 
 public class PricesBuilder {
+
+    private Long id;
     private Brand brand;
     private Instant startDate;
     private Instant endDate;
@@ -18,6 +20,7 @@ public class PricesBuilder {
 
     public Prices build(){
         Prices prices = new Prices();
+        prices.setId(id);
         prices.setBrand(brand);
         prices.setStartDate(startDate);
         prices.setEndDate(endDate);
@@ -27,6 +30,11 @@ public class PricesBuilder {
         prices.setPriority(priority);
         prices.setCurrency(currency);
         return prices;
+    }
+
+    public PricesBuilder id(Long id) {
+        this.id = id;
+        return this;
     }
 
     public PricesBuilder brand(Brand brand){

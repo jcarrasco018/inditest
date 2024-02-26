@@ -18,71 +18,71 @@ public class Prices {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Brand getBrand() {
         return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
     }
 
     public Instant getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Instant startDate) {
-        this.startDate = startDate;
-    }
-
     public Instant getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(Instant endDate) {
-        this.endDate = endDate;
     }
 
     public Long getPriceList() {
         return priceList;
     }
 
-    public void setPriceList(Long priceList) {
-        this.priceList = priceList;
-    }
-
     public Long getProductId() {
         return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    protected void setId(Long id) {
+        this.id = id;
+    }
+
+    protected void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    protected void setStartDate(Instant startDate) {
+        this.startDate = startDate;
+    }
+
+    protected void setEndDate(Instant endDate) {
+        this.endDate = endDate;
+    }
+
+    protected void setPriceList(Long priceList) {
+        this.priceList = priceList;
+    }
+
+    protected void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    protected void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    protected void setPrice(Double price) {
+        this.price = price;
+    }
+
+    protected void setCurrency(String currency) {
         this.currency = currency;
     }
 
