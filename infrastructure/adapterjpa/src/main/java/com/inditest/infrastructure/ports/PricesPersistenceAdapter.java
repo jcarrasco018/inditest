@@ -18,8 +18,8 @@ public class PricesPersistenceAdapter implements PricesPersistencePort {
     }
 
     @Override
-    public List<Prices> findByBrandIdAndProductIdAndDateRange(Long brandId, Long productId, Instant date) {
-        return pricesRepository.findByBrandIdAndProductIdAndDateRange(brandId, productId, date).stream().map(PricesMapper::toDto).toList();
+    public Prices findByBrandIdAndProductIdAndDateRange(Long brandId, Long productId, Instant date) {
+        return PricesMapper.toDto(pricesRepository.findByBrandIdAndProductIdAndDateRange(brandId, productId, date).orElse(null));
     }
 
     @Override

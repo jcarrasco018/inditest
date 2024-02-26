@@ -6,7 +6,7 @@ import java.time.Instant;
 import java.util.List;
 
 public interface PricesPersistencePort {
-    List<Prices> findByBrandIdAndProductIdAndDateRange(Long brandId, Long productId, Instant date);
+    Prices findByBrandIdAndProductIdAndDateRange(Long brandId, Long productId, Instant date);
 
     void saveAll(List<Prices> listPrices);
 

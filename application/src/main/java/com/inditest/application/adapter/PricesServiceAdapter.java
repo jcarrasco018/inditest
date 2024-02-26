@@ -17,27 +17,22 @@ public class PricesServiceAdapter implements PricesService {
     }
 
     @Override
-    public void save(Prices prices){
-        if(Objects.nonNull(prices)){
+    public void save(Prices prices) {
+        if (Objects.nonNull(prices)) {
             pricesPersistencePort.save(Objects.requireNonNull(prices));
         }
     }
 
     @Override
-    public void save(List<Prices> listPrices){
-        if(Objects.nonNull(listPrices)){
+    public void save(List<Prices> listPrices) {
+        if (Objects.nonNull(listPrices)) {
             pricesPersistencePort.saveAll(listPrices);
         }
     }
 
     @Override
     public Prices findPrices(Instant date, Long productId, Long brandId) {
-        List<Prices> listPricesEntity = pricesPersistencePort.findByBrandIdAndProductIdAndDateRange(brandId, productId, date);
-        if (Objects.nonNull(listPricesEntity) && !listPricesEntity.isEmpty()) {
-            return listPricesEntity.stream().max(Comparator.comparing(Prices::getPriority)).orElse(null);
-        }
-        return null;
-
+        return pricesPersistencePort.findByBrandIdAndProductIdAndDateRange(brandId, productId, date);
     }
 
 
