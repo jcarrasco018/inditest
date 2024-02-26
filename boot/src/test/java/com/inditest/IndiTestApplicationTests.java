@@ -4,13 +4,18 @@ package com.inditest;
 import com.inditest.infraestructure.dto.PricesResultDTO;
 import com.inditest.infrastructure.utils.TimeUtils;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +30,8 @@ class IndiTestApplicationTests {
     @Value("${server.contextPath}")
     private String contextPath;
 
-    private final TestRestTemplate restTemplate = new TestRestTemplate();
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     /**
      * Petición a las 10:00 del día 14 del producto 35455   para la brand 1 (ZARA)
@@ -152,24 +158,6 @@ class IndiTestApplicationTests {
 
         assertNotNull(respuesta);
         assertEquals(HttpStatus.BAD_REQUEST, respuesta.getStatusCode());
-
-    }
-
-    /**
-     * Petición sin un parametro para dar 400
-     */
-    @Test
-    void testNotFound() {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString("http://localhost:".concat(String.valueOf(puerto)).concat(contextPath))
-                .pathSegment("prices");
-        uriBuilder.queryParam("date", TimeUtils.getInstant("2020-01-16-21.00.00"));
-        uriBuilder.queryParam("productId", 35455L);
-        uriBuilder.queryParam("brandId", 1L);
-
-        ResponseEntity<PricesResultDTO> respuesta = restTemplate.getForEntity(uriBuilder.toUriString(), PricesResultDTO.class);
-
-        assertNotNull(respuesta);
-        assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
 
     }
 

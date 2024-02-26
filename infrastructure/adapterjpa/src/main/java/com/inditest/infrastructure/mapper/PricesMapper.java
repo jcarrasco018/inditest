@@ -1,32 +1,33 @@
 package com.inditest.infrastructure.mapper;
 
 import com.inditest.domain.model.Prices;
+import com.inditest.domain.model.PricesBuilder;
 import com.inditest.infrastructure.entities.PricesEntity;
 
 import java.util.Objects;
 
 public class PricesMapper {
 
-    private PricesMapper(){}
+    private PricesMapper() {
+    }
 
     public static Prices toDto(PricesEntity prices) {
         if (Objects.nonNull(prices)) {
-            Prices pricesDTO = new Prices();
-            pricesDTO.setPrice(prices.getPrice());
-            pricesDTO.setBrand(BrandMapper.toDto(prices.getBrand()));
-            pricesDTO.setStartDate(prices.getStartDate());
-            pricesDTO.setEndDate(prices.getEndDate());
-            pricesDTO.setPriceList(prices.getPriceList());
-            pricesDTO.setProductId(prices.getProductId());
-            pricesDTO.setPriority(prices.getPriority());
-            pricesDTO.setPrice(prices.getPrice());
-            pricesDTO.setCurrency(prices.getCurrency());
-                return pricesDTO;
+            return PricesBuilder.builder()
+                    .price(prices.getPrice())
+                    .brand(BrandMapper.toDto(prices.getBrand()))
+                    .startDate(prices.getStartDate())
+                    .endDate(prices.getEndDate())
+                    .priceList(prices.getPriceList())
+                    .productId(prices.getProductId())
+                    .priority(prices.getPriority())
+                    .currency(prices.getCurrency())
+                    .build();
         }
         return null;
     }
 
-    public static PricesEntity toEntity(Prices pricesDTO){
+    public static PricesEntity toEntity(Prices pricesDTO) {
         if (Objects.nonNull(pricesDTO)) {
             PricesEntity prices = new PricesEntity();
             prices.setPrice(pricesDTO.getPrice());
