@@ -2,6 +2,7 @@ package com.inditest.infraestructure.controller;
 
 
 import com.inditest.application.api.PricesService;
+import com.inditest.domain.exception.NotFoundPricesException;
 import com.inditest.infraestructure.dto.PricesResultDTO;
 import com.inditest.infraestructure.mapper.PricesResultMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,10 +47,10 @@ public class PricesController {
             @RequestParam(name = "productId") Long productId,
             @Parameter(required = true, description="Id del Brand a filtrar",example = "1")
             @RequestParam(name = "brandId") Long brandId
-    ) {
+    ) throws NotFoundPricesException {
         PricesResultDTO prices = PricesResultMapper.toDTO(pricesService.findPrices(date, productId, brandId));
         if (Objects.isNull(prices)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            throw new NotFoundPricesException(String.format("Precio no encontrado para fecha %s - productId %s - brandId: %s",date,productId,brandId));
         }
         return new ResponseEntity<>(prices, HttpStatus.OK);
     }
